@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary Bids and Offers</title>
+    <style>
+        .submitBtn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px; 
+        }
+
+        .submitBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Primary Bids and Offers</h2> 
+    <form action="#" method="post">
+	<table>
+	<tr>
+		<td>   <label for="SlotNumber">Slot number:</label></td>
+		<td>  <input type="number" id="SlotNumber" name="SlotNumber"></td>
+	</tr>  
+	<tr> 
+		<td> <input type="hidden" id="BusNumber" name="BusNumber"></input></td> 
+	</tr> 
+    <tr> 
+		<td> <label for="Power">Power:</label></td>
+        <td> <input type="number" id="Power" name="Power"></td>
+    </tr>
+	<tr> 
+		<td><label for="Price">Price:</label></td>
+		<td> <input type="number" id="Price" name="Price"></td>
+	</tr>
+    <tr>
+		<td colspan="2" align="right"> <input type="submit" value="Submit" onclick="primaryBidsCreate()"></td>
+		</tr>
+	</table>
+    </form>
+    
+	<br>
+	
+	<!-- href="MCP.html" -->
+    <a class="submitBtn" onclick="mcpCheck()" >MCP</a>
+	<a href="Secbid.html" class="submitBtn">Secondary Bids</a>
+	<a href="http://192.168.13.186" class="submitBtn">Relays</a>
+
+	
+	<br><br><br><br> 
+	
+	<button id="logoutButton" align="center" onclick="logout()">Logout</button>
+	<script src="Auction.js"></script>
+</body>
+</html>

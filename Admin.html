@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO</title>
+    <style>
+        .submitBtn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px; 
+        }
+        .submitBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">		
+</head>
+<body>
+    <h2>ISO</h2>
+    
+	<button id="Primary" class="submitBtn" onclick="loadPrimaryBids()">Primary Auction</button>
+	<button id="MCP" class="submitBtn"onclick="loadMCP()">MCP</button>
+	<button id="Secondary" class="submitBtn" onclick="loadSecondaryBids()">Secondary Auction</button>
+	<!-- <input type="checkbox" id="mcp" name="mcp" value="Yes" > -->
+    <!-- <label for="myCheckbox">MCP Provided </label> -->
+	
+	<button id="logoutButton" onclick="logout()">Logout</button>
+	
+	<div class="container" id="auctionTable">
+	</div>
+	<script>
+	function loadPrimaryBids() {
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "https://auction-web-10k5.onrender.com/Primarybids");
+		xhttp.send();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			var trHTML = "";
+			trHTML += "<div class='table-responsive'>";
+			trHTML += "<table class='table'>";
+			trHTML += "<thead>";
+            trHTML += "<tr> <th scope='col'>ID</th> <th scope='col'>SLOT NUMBER</th>  <th scope='col'>BUS NUMBER</th>  <th scope='col'>POWER</th>   <th scope='col'>PRICE</th>  </tr>  </thead> ";
+			trHTML += "<tbody>";
+                    
+			const objects = JSON.parse(this.responseText);
+			for (let object of objects) {
+				trHTML += "<tr>";
+				trHTML += "<td>" + object["id"] + "</td>";
+				trHTML += "<td>" + object["SlotNumber"] + "</td>";
+				trHTML += "<td>" + object["BusNumber"] + "</td>";
+				trHTML += "<td>" + object["Power"] + "</td>";
+				trHTML += "<td>" + object["Price"] + "</td>";
+				trHTML += "</tr>";
+			}
+			trHTML += "</tbody> </table> </div>";
+			document.getElementById("auctionTable").innerHTML = trHTML;
+			}
+		};
+	}
+  
+  
+	function loadMCP() {
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "https://auction-web-10k5.onrender.com/MCP");
+		xhttp.send();
+		xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			var trHTML = "";
+			trHTML += "<div class='table-responsive'>";
+			trHTML += "<table class='table'>";
+			trHTML += "<thead>";
+			trHTML += "<tr> <th scope='col'>SLOT NUMBER</th>  <th scope='col'>MCP</th> <th scope='col'>BUS 1</th> <th scope='col'>BUS 2</th>  <th scope='col'>BUS 3</th> <th scope='col'>BUS 4</th>  <th scope='col'>BUS 5</th> </tr></thead>";
+			trHTML += "<tbody>";
+                    
+			const objects = JSON.parse(this.responseText);
+				for (let object of objects) {
+					trHTML += "<tr>";
+					trHTML += "<td>" + object["SlotNumber"] + "</td>";
+					trHTML += "<td>" + object["MCP"] + "</td>";
+					trHTML += "<td>" + object["Bus1"] + "</td>";
+					trHTML += "<td>" + object["Bus2"] + "</td>";
+					trHTML += "<td>" + object["Bus3"] + "</td>";
+					trHTML += "<td>" + object["Bus4"] + "</td>";
+					trHTML += "<td>" + object["Bus5"] + "</td>";
+					trHTML += "</tr>";
+				}
+				trHTML += "</tbody> </table> </div>";
+				document.getElementById("auctionTable").innerHTML = trHTML;
+			}
+		};
+	}
+  
+	function loadSecondaryBids() {
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "https://auction-web-10k5.onrender.com/Secondarybids");
+		xhttp.send();
+		xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			var trHTML = "";
+			trHTML += "<div class='table-responsive'>";
+			trHTML += "<table class='table'>";
+			trHTML += "<thead>";
+			trHTML += "<tr> <th scope='col'>ID</th> <th scope='col'>SLOT NUMBER</th>  <th scope='col'>BUS NUMBER</th>  <th scope='col'>INC. POWER</th>   <th scope='col'>DEC. POWER</th> <th scope='col'>VARYING PRICE</th>   </tr>  </thead> ";
+			trHTML += "<tbody>";
+                    
+			const objects = JSON.parse(this.responseText);
+			for (let object of objects) {
+				trHTML += "<tr>";
+				trHTML += "<td>" + object["id"] + "</td>";
+				trHTML += "<td>" + object["SlotNumber"] + "</td>";
+				trHTML += "<td>" + object["BusNumber"] + "</td>";
+				trHTML += "<td>" + object["incPower"] + "</td>";
+				trHTML += "<td>" + object["decPower"] + "</td>";
+				trHTML += "<td>" + object["incPrice"] + "</td>";
+				trHTML += "</tr>";
+			}
+			trHTML += "</tbody> </table> </div>";
+			document.getElementById("auctionTable").innerHTML = trHTML;
+			}
+		};
+	}
+	
+	function logout() {
+		alert("You have been logged out!"); 
+		window.location.href = "Login.html";
+	}
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

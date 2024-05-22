@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textbox Fields and Hyperlinks</title>
+	<style>
+        .submitBtn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px; 
+        }
+        .submitBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>MCP and Bus power</h2>
+    <form action="#" method="GET">
+        <label for="SlotNumber">Slot number:</label>
+        <input type="text" id="SlotNumber" name="SlotNumber"><br><br>
+
+        <input type="hidden" id="BusNumber" name="BusNumber"></input>
+		
+        <input type="submit" value="Submit" onclick="retrieveData()">
+    </form>
+    
+	<h3 id="slotResult"> </h3>
+	<h3 id="mcpResult"> </h3>
+	<h3 id="busPowerResult"> </h3>
+	
+    <a href="index.html" class="submitBtn">Homepage</a>
+	
+	<script src="Auction.js"></script>
+</body>
+</html>

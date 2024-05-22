@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+	<style>
+        .submitBtn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px; 
+        }
+        .submitBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body align="center">
+<br><br><br><br><br><br><br><br>
+    <h2>Login</h2> <br>
+    <form id="loginForm" autocomplete="on">
+        <table align="center">
+		<tr>
+		<td> <label for="UserName">User Name:</label></td>
+        <td> <input type="text" id="UserName" name="UserName"> </td>
+		</tr>
+        
+		<tr>
+		<td> <label for="Password">Password:</label>  </td>
+		<td> <input type="Password" id="Password" name="Password"> </td>
+		</tr>
+		
+		<tr> <td colspan=2 align="center"> <button id="submitBtn" type="button" onclick="loginCheck()"> Login </button> </td></tr>
+		</table>
+    </form>	
+	
+	<script src="Auction.js"> </script>
+</body>
+</html>
